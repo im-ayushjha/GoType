@@ -82,3 +82,17 @@ passport.use(usermodel.createStrategy());
 
 passport.serializeUser(usermodel.serializeUser());
 passport.deserializeUser(usermodel.deserializeUser());
+
+//////paragraph data base///////////////////////////////
+const paraschema = new mongoose.Schema({
+  para: String,
+});
+const paramodel = mongoose.model("paragraph", paraschema);
+/////////////////////////////////////////////////////////
+var paragraph = "";
+function parasplit() {
+  paragraph = paragraph.toLowerCase();
+  paragraph = paragraph.replace(/[^a-zA-Z0-9 ]/g, "");
+  var words = paragraph.split(" ");
+}
+
