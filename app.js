@@ -30,7 +30,7 @@ app.use(passport.session());
 
 mongoose
   .connect(
-    "mongodb+srv://ayush2022ca016:jhaaayus@cluster0.v4icccp.mongodb.net/?retryWrites=true&w=majority"
+    "mongodb+srv://kartik:kartik123@cluster0.8ou8ajo.mongodb.net/?retryWrites=true&w=majority"
   )
   .then(() => console.log("mongo connected"))
   .catch((err) => console.log(err));
@@ -96,3 +96,51 @@ function parasplit() {
   var words = paragraph.split(" ");
 }
 
+////////////////////////////////////////////////////////
+app
+  .route("/")
+  .get(function (req, res) {
+    paramodel
+      .aggregate([{ $sample: { size: 1 } }])
+      .then((result) => {
+        paragraph = result[0].para;
+        parasplit();
+      })
+      .then((result) => {
+        if (req.isAuthenticated()) {
+          res.render("home", { islog: true, para: paragraph });
+        } else {
+          res.render("home", { islog: false, para: paragraph });
+        }
+      });
+  })
+  .post(function (req, res) {
+    const wpm = req.body.Wpm;
+    const acc = req.body.Acc;
+    if (req.user) {
+      usermodel.findOne({ _id: req.user._id }).then((result) => {
+        if (result.Speed.length === 0) {
+          usermodel
+            .updateOne(
+              { _id: req.user._id },
+              { $push: { Speed: wpm, Accuracy: acc } }
+            )
+            .then((result) => {});
+        } else {
+          usermodel
+            .updateOne(
+              { _id: req.user._id },
+              {
+                $push: {
+                  Speed: { $each: [wpm], $slice: -10 },
+                  Accuracy: { $each: [acc], $slice: -10 },
+                },
+              }
+            )
+            .then((result) => {});
+        }
+      });
+    }
+  });
+
+  

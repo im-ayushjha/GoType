@@ -1,0 +1,67 @@
+<%- include("partials/header.ejs"); -%>
+
+        <div class="nav">
+            <div class="navleft"><a href="/"><h2>GoType</h2></a></div>
+            <div class="navright">
+               
+                <% if( islog == true){ %>
+                    <div class="rightitem"><a class="userprofile" href="/userprofile"><img src="Images/user_profile.png" style="height: 2.5rem;"></a></div>
+                    <div class="rightitem"><a class="btn  btn-outline-dark " href="/logout">Logout</a></div>
+                <% }else { %>
+                    <div class="rightitem"><a class="btn  btn-outline-dark " href="/login">Login</a></div>
+                    <div class="rightitem"><a class="btn  btn-outline-dark " href="/signup">Sign Up</a></div>
+                    <div class="rightitem"><a class="userprofile" href="/userprofile"><img src="Images/user_profile.png" style="height: 2.5rem;"></a></div>
+                <% } %>
+                
+            </div>
+        </div>
+
+        <div class="body">
+            
+            
+            <div class="sidebar"> 
+                <div class="sideitem"><h2>Time</h2></div>
+                <div style="margin-top: 2rem;" class="timer-option">   
+                    <input type="checkbox"  class="ch" id="first" name="option" checked>
+                    <label for="first" class="check"><h3>15s</h3></label>
+                </div>
+
+                <div class="timer-option">  
+                    <input type="checkbox"  class="ch" id="second" name="option">
+                    <label for="second" class="check"><h3>30s</h3></label>
+                </div>
+
+                <div class="timer-option">   
+                    <input type="checkbox"  class="ch" id="third" name="option">
+                    <label for="third" class="check"><h3>60s</h3></label>
+                </div>
+
+                <div class="container">
+                    <h5>Light/Dark</h5>
+                    <label id="switch" class="switch">
+                        <input type="checkbox" onchange="toggleTheme()" id="slider">
+                        <div class="slider round"></div>
+                    </label>
+                    <button id="switch" onclick="toggleTheme()" ></button>
+                </div> 
+            </div>
+            
+            <div class="para">
+                
+                <div class="input-field">
+                    <p><h4 class="one"></h4></p>
+                    <script>
+                        var p = "<%= para %>";
+                    </script>
+                    <div style="text-align: left; width: 100%;">
+                        <h3 class="timer" style="margin: 1rem; display: inline; color:white;-webkit-text-stroke: 1.3px black; font-weight: 800;">&nbsp;</h3>
+                    </div>
+                    <textarea id="typing-area" maxlength="50" class="text" placeholder="enter text here" autofocus="on" onkeypress="starttimer()"></textarea>
+                    <div class="reset"><button class="btn resetbutton btn-outline-light">Reset</button></div>
+                </div>
+                
+            </div>
+            
+        </div>
+
+<%- include("partials/footer.ejs"); -%>
