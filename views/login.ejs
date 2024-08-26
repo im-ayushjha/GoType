@@ -1,0 +1,16 @@
+<%- include("partials/header.ejs"); -%>
+
+    <div class="login">
+        <h1>GoType</h1><br>
+        <form action="/login" method="post">
+            <label for="user"><h5>Username</h5></label><br>
+            <input id="user" type="text" name="username" autocomplete="off"><br><br>
+            <label for="password"><h5>Password</h5></label><br>
+            <input id="password" type="password" name="password" autocomplete="off"><br><br>
+            <p><%= error_mess %></p>
+            <button class="btn btn-light" type="submit">Login</button>
+        </form>
+    </div>
+
+
+<%- include("partials/footer.ejs"); -%>

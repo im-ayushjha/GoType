@@ -143,4 +143,26 @@ app
     }
   });
 
-  
+app
+  .route("/login")
+  .get(function (req, res) {
+    res.render("login", { error_mess: "" });
+  })
+  .post(function (req, res) {
+    const user = new usermodel({
+      username: req.body.username,
+      password: req.body.password,
+    });
+
+    req.login(user, function (err) {
+      if (err) console.log(err);
+      else {
+        passport.authenticate("local", function (err, user, info) {
+          if (err) console.log(err);
+          if (!user) {
+            res.render("login", { error_mess: "Invalid User ID or Password" });
+          } else res.redirect("/");
+        })(req, res);
+      }
+    });
+  });  
