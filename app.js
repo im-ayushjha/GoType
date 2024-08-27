@@ -166,3 +166,25 @@ app
       }
     });
   });  
+
+  app
+  .route("/signup")
+  .get(function (req, res) {
+    res.render("signup");
+  })
+  .post(function (req, res) {
+    usermodel.register(
+      { username: req.body.username },
+      req.body.password,
+      function (err, user) {
+        if (err) {
+          console.log(err);
+          res.redirect("/signup");
+        } else {
+          passport.authenticate("local")(req, res, function () {
+            res.redirect("/");
+          });
+        }
+      }
+    );
+  });
