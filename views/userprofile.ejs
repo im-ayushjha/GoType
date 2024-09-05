@@ -1,0 +1,23 @@
+<%- include("partials/header.ejs"); -%>
+
+    <div class="nav">
+        <div class="navleft"><a href="/"><h2>GoType</h2></a></div>
+        <div class="navright">
+            <div class="rightitem"><a class="userprofile" href="/userprofile"><img src="Images/user_profile.png" style="height: 2.5rem;"></a></div>
+            <div class="rightitem"><a class="btn  btn-outline-dark " href="/logout">Logout</a></div>
+        </div>
+    </div>
+    <div class="your_data">
+        <h1>User : <%= name %></h1>
+        <span class="data">Speed</span>
+        <span class="data">Accuracy</span><br>
+        <%for(var i=0 ; i<speed.length ; i++){%>
+            <span class="data"><%= speed[i] %></span>
+            <span class="data"><%= accuracy[i] %></span><br>
+        <%}%> 
+        <br>
+        <h2>Highest :  <%= maxs%>WPM &nbsp;<%= maxa %>%</h3>
+    </div>
+
+
+<!-- <%- include("partials/footer.ejs"); -%> -->
