@@ -99,3 +99,17 @@ function toggleTheme() {
     document.getElementById("slider").checked = true;
   }
 })();
+
+update();
+function update() {
+  const paraelement = document.querySelector(".one");
+  paraelement.innerHTML = "&nbsp;";
+  for (var i = 0; i < words.length; i++) {
+    const span = document.createElement("span");
+    span.innerText = words[i] + " ";
+    paraelement.appendChild(span);
+  }
+  document.querySelector(".text").addEventListener("keydown", function (event) {
+    check(event);
+  });
+}
