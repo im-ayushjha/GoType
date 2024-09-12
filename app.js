@@ -225,3 +225,9 @@ app
       res.render("login", { error_mess: "Please login to view your profile" });
     }
   });
+
+  app.listen(PORT, function (req, res) {
+    console.log(`server started at port ${PORT}`);
+    console.log(`visit ${URL} to open page`)
+  });
+  
