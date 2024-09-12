@@ -165,9 +165,9 @@ app
         })(req, res);
       }
     });
-  });  
+  });
 
-  app
+app
   .route("/signup")
   .get(function (req, res) {
     res.render("signup");
@@ -189,53 +189,52 @@ app
     );
   });
 
-  app.route("/userprofile").get(function (req, res) {
-    if (req.isAuthenticated()) {
-      var s, a;
-      usermodel.findOne({ _id: req.user._id }).then((result) => {
-        s = result.Speed;
-        a = result.Accuracy;
-        var m = Math.max(...s);
-        var maxi = s.indexOf(m);
-        if (m >= result.maxs) {
-          usermodel
-            .updateOne(
-              { _id: req.user._id },
-              { $set: { maxs: s[maxi], maxa: a[maxi] } }
-            )
-            .then((ans) => {
-              res.render("userprofile", {
-                name: result.username,
-                speed: s,
-                accuracy: a,
-                maxs: s[maxi],
-                maxa: a[maxi],
-              });
+app.route("/userprofile").get(function (req, res) {
+  if (req.isAuthenticated()) {
+    var s, a;
+    usermodel.findOne({ _id: req.user._id }).then((result) => {
+      s = result.Speed;
+      a = result.Accuracy;
+      var m = Math.max(...s);
+      var maxi = s.indexOf(m);
+      if (m >= result.maxs) {
+        usermodel
+          .updateOne(
+            { _id: req.user._id },
+            { $set: { maxs: s[maxi], maxa: a[maxi] } }
+          )
+          .then((ans) => {
+            res.render("userprofile", {
+              name: result.username,
+              speed: s,
+              accuracy: a,
+              maxs: s[maxi],
+              maxa: a[maxi],
             });
-        } else
-          res.render("userprofile", {
-            name: result.username,
-            speed: s,
-            accuracy: a,
-            maxs: result.maxs,
-            maxa: result.maxa,
           });
-      });
-    } else {
-      res.render("login", { error_mess: "Please login to view your profile" });
-    }
-  });
-
-  app.route("/logout").get(function (req, res) {
-    req.logout((err) => {
-      if (err) console.log(err);
+      } else
+        res.render("userprofile", {
+          name: result.username,
+          speed: s,
+          accuracy: a,
+          maxs: result.maxs,
+          maxa: result.maxa,
+        });
     });
-  
-    res.redirect("/");
+  } else {
+    res.render("login", { error_mess: "Please login to view your profile" });
+  }
+});
+
+app.route("/logout").get(function (req, res) {
+  req.logout((err) => {
+    if (err) console.log(err);
   });
 
-  app.listen(PORT, function (req, res) {
-    console.log(`server started at port ${PORT}`);
-    console.log(`visit ${URL} to open page`)
-  });
-  
+  res.redirect("/");
+});
+
+app.listen(PORT, function (req, res) {
+  console.log(`server started at port ${PORT}`);
+  console.log(`visit ${URL} to open page`)
+});
