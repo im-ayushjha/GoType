@@ -226,6 +226,14 @@ app
     }
   });
 
+  app.route("/logout").get(function (req, res) {
+    req.logout((err) => {
+      if (err) console.log(err);
+    });
+  
+    res.redirect("/");
+  });
+
   app.listen(PORT, function (req, res) {
     console.log(`server started at port ${PORT}`);
     console.log(`visit ${URL} to open page`)
