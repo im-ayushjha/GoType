@@ -154,3 +154,52 @@ function reset() {
 function resettextarea() {
   document.querySelector(".text").value = "";
 }
+
+function check(x) {
+  // console.log(x.key,x.key.charCodeAt(0),x.key.length,b.length);
+  if (x.key == " " && b.length>0) {
+    total++;
+    if (words[i] == b) {
+      // console.log(words[i], b);
+      count++;
+      spans[i].classList.remove("incorrect");
+      spans[i].classList.remove("highlight");
+      spans[i].classList.add("correct");
+      resettextarea();
+    } else {
+      spans[i].classList.remove("highlight");
+      spans[i].classList.add("incorrect");
+      resettextarea();
+    }
+
+    b = "";
+    i++;
+    if(i===words.length){
+      i=0;
+      words.sort(() => Math.random() - 0.5);
+      //////////////////////////////////////////
+    
+      resettextarea();
+      const paraelement = document.querySelector(".one");
+      paraelement.innerHTML = "";
+      for (var k = 0; k < words.length; k++) {
+        const span = document.createElement("span");
+        span.innerText = words[k] + " ";
+        paraelement.appendChild(span);
+      }
+    }
+    index = i;
+    spans[i].classList.add("highlight");
+    j = 0;
+  } else if (x.key === "Backspace") {
+    b = b.substring(0, j);
+    j--;
+  } else if (x.key === words[i][j]) {
+    b += x.key;
+    j++;
+  } else if (x.key.length === 1 && x.key.charCodeAt(0) >= 33 && x.key.charCodeAt(0) <= 126) {
+    b += x.key;
+    spans[i].classList.remove("highlight");
+    spans[i].classList.add("incorrect");
+  }
+}
