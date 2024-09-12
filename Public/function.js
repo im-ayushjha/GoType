@@ -4,7 +4,7 @@ var index = 0;
 var i = 0,
   j = 0,
   count = 0,
-  total = 1;
+  total = 0;
 var time = 15,
   y;
 var currenttime = 15;
