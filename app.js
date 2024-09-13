@@ -196,20 +196,26 @@ app.route("/userprofile").get(function (req, res) {
       s = result.Speed;
       a = result.Accuracy;
       var m = Math.max(...s);
-      var maxi = s.indexOf(m);
-      if (m >= result.maxs) {
+      let max_acc=Math.max(...a);
+      // console.log(m,max_acc);
+      // console.log(result.maxa,result.maxs);
+      
+      if (m > result.maxs ||  (m==result.maxs && max_acc>result.maxa)) {
+        var ind_speed = s.indexOf(m);
+        var ind_acc = a.indexOf(max_acc);
+        // console.log(ind_speed,ind_acc);
         usermodel
           .updateOne(
             { _id: req.user._id },
-            { $set: { maxs: s[maxi], maxa: a[maxi] } }
+            { $set: { maxs: s[ind_speed], maxa: a[ind_acc] } }
           )
           .then((ans) => {
             res.render("userprofile", {
               name: result.username,
               speed: s,
               accuracy: a,
-              maxs: s[maxi],
-              maxa: a[maxi],
+              maxs: s[ind_speed],
+              maxa: a[ind_acc],
             });
           });
       } else

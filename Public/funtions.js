@@ -43,7 +43,9 @@ function starttimer() {
       if (time == -1) {
         clearInterval(y);
         // console.log(total,count);
-        var acc = (count / total) * 100;
+        let acc=0;
+        if(total!==0)
+          acc = (count / total) * 100;
         var wpm;
         if (currenttime == 15) wpm = count * 4;
         if (currenttime == 30) wpm = count * 2;
