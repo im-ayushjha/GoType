@@ -236,7 +236,6 @@ app.route("/logout").get(function (req, res) {
   req.logout((err) => {
     if (err) console.log(err);
   });
-
   res.redirect("/");
 });
 

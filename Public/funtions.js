@@ -41,7 +41,7 @@ function starttimer() {
       document.querySelector(".timer").innerHTML = time;
       time--;
       if (time == -1) {
-        clearInterval(y);
+        clearInterval(y); 
         // console.log(total,count);
         let acc=0;
         if(total!==0)
