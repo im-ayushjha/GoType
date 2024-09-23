@@ -76,32 +76,6 @@ function starttimer() {
   }
 }
 
-// function to set a given theme/color-scheme
-function setTheme(themeName) {
-  localStorage.setItem("theme", themeName);
-  document.documentElement.className = themeName;
-}
-
-// function to toggle between light and dark theme
-function toggleTheme() {
-  if (localStorage.getItem("theme") === "theme-dark") {
-    setTheme("theme-light");
-  } else {
-    setTheme("theme-dark");
-  }
-}
-
-// Immediately invoked function to set the theme on initial load
-(function () {
-  if (localStorage.getItem("theme") === "theme-dark") {
-    setTheme("theme-dark");
-    document.getElementById("slider").checked = false;
-  } else {
-    setTheme("theme-light");
-    document.getElementById("slider").checked = true;
-  }
-})();
-
 update();
 function update() {
   const paraelement = document.querySelector(".one");
@@ -200,8 +174,7 @@ function check(x) {
     spans[i].classList.add("highlight");
     j = 0;
   } else if (x.key === "Backspace") {
-    b = b.substring(0, j);
-    j--;
+    b = b.slice(0, -1)
   } else if (x.key === words[i][j]) {
     b += x.key;
     j++;
@@ -210,4 +183,31 @@ function check(x) {
     spans[i].classList.remove("highlight");
     spans[i].classList.add("incorrect");
   }
+  // else if()
 }
+
+// function to set a given theme/color-scheme
+function setTheme(themeName) {
+  localStorage.setItem("theme", themeName);
+  document.documentElement.className = themeName;
+}
+
+// function to toggle between light and dark theme
+function toggleTheme() {
+  if (localStorage.getItem("theme") === "theme-dark") {
+    setTheme("theme-light");
+  } else {
+    setTheme("theme-dark");
+  }
+}
+
+// Immediately invoked function to set the theme on initial load
+(function () {
+  if (localStorage.getItem("theme") === "theme-dark") {
+    setTheme("theme-dark");
+    document.getElementById("slider").checked = false;
+  } else {
+    setTheme("theme-light");
+    document.getElementById("slider").checked = true;
+  }
+})();
