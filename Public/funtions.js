@@ -116,6 +116,12 @@ function update() {
   });
 }
 
+//get data from api
+// fetch('https://random-word-api.herokuapp.com/word?number=100')
+//   .then(response => response.json())
+//   .then(data => console.log(data))
+//   .catch(error => console.error('Error fetching activity:', error));
+
 const spans = document.getElementsByTagName("span");
 spans[0].classList.add("highlight");
 

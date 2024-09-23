@@ -1,7 +1,6 @@
 const express = require("express");
 const bodyparser = require("body-parser");
 const _ = require("lodash");
-
 const session = require("express-session");
 const passport = require("passport");
 const passportlocalmongoose = require("passport-local-mongoose");
@@ -95,6 +94,7 @@ function parasplit() {
   paragraph = paragraph.replace(/[^a-zA-Z0-9 ]/g, "");
   var words = paragraph.split(" ");
 }
+
 
 ////////////////////////////////////////////////////////
 app
