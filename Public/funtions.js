@@ -1,6 +1,6 @@
-document.addEventListener('DOMContentLoaded', function() {
+// document.addEventListener('DOMContentLoaded', function() {
   let currentPage = window.location.pathname;
-
+  // console.log(currentPage);
   // Check if we're on the home page
   if (currentPage === '/') {
 
@@ -144,7 +144,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function check(x) {
-      console.log(x.key,x.key.charCodeAt(0),x.key.length,b.length,b);
+      // console.log(x.key,x.key.charCodeAt(0),x.key.length,b.length,b);
       if (x.ctrlKey || x.metaKey) {
         x.preventDefault();  // Prevent any key input when Ctrl (or Cmd) is pressed
         alert("Ctrl with any key is not allowed in Typing area!");
@@ -237,7 +237,7 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   
-  currentPage = window.location.pathname;
+  // let currentPage = window.location.pathname;
 
   // Check if we're on the signup page
   if (currentPage === '/signup') {
@@ -261,4 +261,4 @@ document.addEventListener('DOMContentLoaded', function() {
         console.log("Signup form not found on this page");
     }
   }
-});
+// });
