@@ -28,7 +28,7 @@ app.use(passport.session());
 
 mongoose
   .connect(
-    "mongodb+srv://kartik:kartik123@cluster0.8ou8ajo.mongodb.net/?retryWrites=true&w=majority"
+    process.env.MONGODB_URI
   )
   .then(() => console.log("mongo connected"))
   .catch((err) => console.log(err));
