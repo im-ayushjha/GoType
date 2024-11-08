@@ -5,7 +5,7 @@ const session = require("express-session");
 const passport = require("passport");
 const passportlocalmongoose = require("passport-local-mongoose");
 const mongoose = require("mongoose");
-// require("dotenv").config();
+require("dotenv").config();
 const PORT = 5000;
 const URL = `http://localhost:${PORT}/`;
 
